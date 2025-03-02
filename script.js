@@ -70,7 +70,7 @@ async function generateMatrixWithGemini(topic) {
                 "dimensiones": ["Dimensión 1", "Dimensión 2", "..."],
                 "indicadores": ["Indicador 1", "Indicador 2", "..."]
             },
-
+            
         "disenoMetodologico": {
             "tipo": "Tipo de investigación",
             "enfoque": "Enfoque de investigación",
@@ -286,6 +286,48 @@ function generateStructuredMatrixHTML(matrix) {
         }
     }
     
+    // Variables adicionales (si existen)
+    if (matrix.variables.adicionales && matrix.variables.adicionales.length > 0) {
+        for (const variable of matrix.variables.adicionales) {
+            if (variable.nombre) {
+                html += `<tr>
+                        <th colspan="2">Variable Adicional: ${variable.nombre}</th>
+                    </tr>`;
+                
+                if (variable.dimensiones && variable.dimensiones.length > 0) {
+                    html += `<tr>
+                            <th>Dimensiones</th>
+                            <td>
+                                <ul>`;
+                    
+                    for (const dim of variable.dimensiones) {
+                        html += `<li>${dim}</li>`;
+                    }
+                    
+                    html += `</ul>
+                            </td>
+                        </tr>`;
+                }
+                
+                if (variable.indicadores && variable.indicadores.length > 0) {
+                    html += `<tr>
+                            <th>Indicadores</th>
+                            <td>
+                                <ul>`;
+                    
+                    for (const ind of variable.indicadores) {
+                        html += `<li>${ind}</li>`;
+                    }
+                    
+                    html += `</ul>
+                            </td>
+                        </tr>`;
+                }
+            }
+        }
+    }
+    
+    html += `</table></div>`;
     
     // Sección de Diseño Metodológico
     html += `<div class="matrix-section">
