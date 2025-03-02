@@ -65,18 +65,22 @@ function exportToPdf() {
         `;
         tempElement.prepend(header);
         
-        // Ocultar elementos no deseados para la impresión
-        const elementsToHide = document.querySelectorAll('.input-container, .other-elements');
-        elementsToHide.forEach(element => {
-            element.style.display = 'none';
+        // Ocultar todos los elementos del body excepto el temporal
+        const bodyChildren = Array.from(document.body.children);
+        bodyChildren.forEach(child => {
+            if (child !== tempElement) {
+                child.style.display = 'none';
+            }
         });
         
         // Imprimir el contenido
         window.print();
         
         // Restaurar la visibilidad de los elementos ocultos
-        elementsToHide.forEach(element => {
-            element.style.display = '';
+        bodyChildren.forEach(child => {
+            if (child !== tempElement) {
+                child.style.display = '';
+            }
         });
         
         // Remover el elemento temporal
