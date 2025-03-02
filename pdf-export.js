@@ -46,6 +46,14 @@ function exportToPdf() {
     loadingElement.querySelector('p').textContent = 'Preparando contenido para impresión...';
     
     try {
+        // Ocultar todos los elementos del body excepto el temporal
+        const bodyChildren = Array.from(document.body.children);
+        bodyChildren.forEach(child => {
+            if (child !== tempElement) {
+                child.style.display = 'none';
+            }
+        });
+        
         // Crear un elemento temporal para el PDF sin afectar el diseño original
         const tempElement = document.createElement('div');
         tempElement.innerHTML = matrixContainer.innerHTML;
@@ -65,13 +73,7 @@ function exportToPdf() {
         `;
         tempElement.prepend(header);
         
-        // Ocultar todos los elementos del body excepto el temporal
-        const bodyChildren = Array.from(document.body.children);
-        bodyChildren.forEach(child => {
-            if (child !== tempElement) {
-                child.style.display = 'none';
-            }
-        });
+
         
         // Imprimir el contenido
         window.print();
