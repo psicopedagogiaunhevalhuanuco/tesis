@@ -40,7 +40,7 @@ document.getElementById('generateButton').addEventListener('click', async () => 
 // Función para generar la matriz usando la API de Gemini
 async function generateMatrixWithGemini(topic) {
     // Inicializar el modelo
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     const prompt = `
     Genera una matriz de consistencia  y completa para una investigación académica sobre "${topic}".

@@ -46,8 +46,7 @@ function exportToPdf() {
     loadingElement.querySelector('p').textContent = 'Preparando contenido para impresión...';
     
     try {
-
-
+        
         // Crear un elemento temporal para el PDF sin afectar el diseño original
         const tempElement = document.createElement('div');
         tempElement.innerHTML = matrixContainer.innerHTML;
@@ -66,6 +65,7 @@ function exportToPdf() {
             <p>Generado el: ${new Date().toLocaleDateString()}</p>
         `;
         tempElement.prepend(header);
+
         // Ocultar todos los elementos del body excepto el temporal
         const bodyChildren = Array.from(document.body.children);
         bodyChildren.forEach(child => {
