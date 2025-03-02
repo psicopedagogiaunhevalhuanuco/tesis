@@ -94,7 +94,7 @@ async function generateMatrixWithGemini(topic) {
     Asegúrate de que exista una clara correspondencia entre los indicadores de las dimensiones de las variables y los ítems del o los instrumentos mostrados. Los indicadores son operativamente definidos como el conjunto de respuestas obtenidas de rangos específicos de ítems dentro del instrumento de medición (cuestionario, encuesta, test, etc.). Por ejemplo, el "indicador de la dimensión empatía" se define como las respuestas obtenidas de los ítems 1 al 7 del cuestionario aplicado. Garantiza que la matriz refleje esta relación de manera coherente y que el instrumento sea adecuado para medir las variables de interés.
     El o los instrumentos de medición deben tener respaldo académico, es decir, que hayan sido aplicados a muestras similares y que cuenten con los criterios de confiabilidad y validéz. 
     IMPORTANTE: Incluye tantos elementos específicos (problemas específicos, objetivos específicos, hipótesis específicas, dimensiones, indicadores, etc.) como sean necesarios según el tema de investigación. No te limites a un número fijo.
-    Siempre deja vacío el array "adicionales".
+    Si el tema requiere variables adicionales (intervinientes, moderadoras, etc.), inclúyelas en el array "adicionales" (solo si es veradaderamente necesario). Si no, deja el array vacío.
     Responde SOLAMENTE con el JSON, sin texto adicional.
     `;
 
