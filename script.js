@@ -43,7 +43,7 @@ async function generateMatrixWithGemini(topic) {
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
 
     const prompt = `
-    Genera una matriz de consistencia, como si un espcialista de asesor de tesis fueras, y completa para una investigación académica sobre "${topic}".
+    Genera una matriz de consistencia  y completa para una investigación académica sobre "${topic}".
     Estructura tu respuesta en formato JSON con la siguiente estructura:
     {
         "problema": {
