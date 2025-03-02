@@ -43,7 +43,7 @@ async function generateMatrixWithGemini(topic) {
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-001" });
 
     const prompt = `
-    Actúa como un especialista en asesoramiento de tesis y genera una matriz de consistencia y completa para una investigación científica sobre "${topic}".
+    Actúa como un especialista en asesoramiento de tesis y usa los manuales de investigación (Como el de Roberto Hernández Sampieri o el de HECTOR HUGO SANCHEZ CARLESSI, por ejemplo) para generar una matriz de consistencia completa y coherente para una investigación científica sobre "${topic}".
     Estructura tu respuesta en formato JSON con la siguiente estructura:
     {
         "problema": {
