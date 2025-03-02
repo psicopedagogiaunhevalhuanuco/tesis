@@ -43,7 +43,7 @@ async function generateMatrixWithGemini(topic) {
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-001" });
 
     const prompt = `
-    Genera una matriz de consistencia  y completa para una investigación académica sobre "${topic}".
+    Actúa como un especialista en asesoramiento de tesis y genera una matriz de consistencia y completa para una investigación científica sobre "${topic}".
     Estructura tu respuesta en formato JSON con la siguiente estructura:
     {
         "problema": {
@@ -88,7 +88,7 @@ async function generateMatrixWithGemini(topic) {
         }
     }
     
-    Asegúrate de que todas las partes de la matriz sean coherentes entre sí y estén relacionadas directamente con el tema de investigación. 
+    Asegúrate de que todas las partes de la matriz sean coherentes entre sí y estén relacionadas directamente con el tema de investigación. Tener en cuenta que la estructura del problema de investigación (tanto general, como específicos) siempre debe estar en interrogación y debe tener la estructura que le compete según el enfoque de la investigación (consulta como se estructura dicho apartado según lo indican las guías de investigación).
     IMPORTANTE: Incluye tantos elementos específicos (problemas específicos, objetivos específicos, hipótesis específicas, dimensiones, indicadores, etc.) como sean necesarios según el tema de investigación. No te limites a un número fijo.
     Si el tema requiere variables adicionales (intervinientes, moderadoras, etc.), inclúyelas en el array "adicionales". Si no, deja el array vacío.
     Responde SOLAMENTE con el JSON, sin texto adicional.
