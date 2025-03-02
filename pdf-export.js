@@ -1,8 +1,5 @@
 // pdf-export.js - Script para exportar la matriz de consistencia a PDF
 
-// Importamos jsPDF y html2canvas mediante CDN en el HTML
-// No los importamos aquí porque se cargarán como scripts globales
-
 document.addEventListener('DOMContentLoaded', function() {
     // Agregar botón de exportación después del botón generar
     const inputContainer = document.querySelector('.input-container');
@@ -33,8 +30,8 @@ function hideExportButton() {
     }
 }
 
-// Función para exportar el contenido a PDF
-async function exportToPdf() {
+// Función para exportar el contenido a PDF usando la funcionalidad de impresión del navegador
+function exportToPdf() {
     const matrixContainer = document.getElementById('matrixContainer');
     const researchTopic = document.getElementById('researchTopic').value;
     const loadingElement = document.getElementById('loading');
@@ -46,7 +43,7 @@ async function exportToPdf() {
     
     // Mostrar indicador de carga
     loadingElement.style.display = 'flex';
-    loadingElement.querySelector('p').textContent = 'Generando PDF...';
+    loadingElement.querySelector('p').textContent = 'Preparando contenido para impresión...';
     
     try {
         // Crear un elemento temporal para el PDF sin afectar el diseño original
@@ -68,47 +65,15 @@ async function exportToPdf() {
         `;
         tempElement.prepend(header);
         
-        // Capturar el elemento como imagen usando html2canvas
-        const canvas = await html2canvas(tempElement, {
-            scale: 2, // Mayor calidad
-            useCORS: true,
-            logging: false,
-            backgroundColor: '#ffffff'
-        });
-        
-        // Determinar dimensiones del PDF
-        // Usar orientación landscape si el contenido es más ancho que alto
-        const imgData = canvas.toDataURL('image/png');
-        const imgWidth = 210; // A4 width in mm
-        const pageHeight = 295; // A4 height in mm
-        const imgHeight = canvas.height * imgWidth / canvas.width;
-        let heightLeft = imgHeight;
-        
-        const orientation = imgWidth > imgHeight ? 'landscape' : 'portrait';
-        const pdf = new jspdf.jsPDF(orientation, 'mm', 'a4');
-        let position = 0;
-        
-        // Añadir la primera página
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-        
-        // Añadir páginas adicionales si es necesario
-        while (heightLeft > 0) {
-            position = heightLeft - imgHeight;
-            pdf.addPage();
-            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-        }
-        
-        // Guardar el PDF
-        pdf.save(`Matriz_Consistencia_${researchTopic.replace(/\s+/g, '_')}.pdf`);
+        // Imprimir el contenido
+        window.print();
         
         // Remover el elemento temporal
         document.body.removeChild(tempElement);
         
     } catch (error) {
-        console.error("Error al generar el PDF:", error);
-        alert("Error al generar el PDF: " + error.message);
+        console.error("Error al preparar el contenido para impresión:", error);
+        alert("Error al preparar el contenido para impresión: " + error.message);
     } finally {
         // Restaurar texto de carga y ocultar indicador
         loadingElement.querySelector('p').textContent = 'Generando matriz...';
