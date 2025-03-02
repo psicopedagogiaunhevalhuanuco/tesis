@@ -65,8 +65,19 @@ function exportToPdf() {
         `;
         tempElement.prepend(header);
         
+        // Ocultar elementos no deseados para la impresión
+        const elementsToHide = document.querySelectorAll('.input-container, .other-elements');
+        elementsToHide.forEach(element => {
+            element.style.display = 'none';
+        });
+        
         // Imprimir el contenido
         window.print();
+        
+        // Restaurar la visibilidad de los elementos ocultos
+        elementsToHide.forEach(element => {
+            element.style.display = '';
+        });
         
         // Remover el elemento temporal
         document.body.removeChild(tempElement);
