@@ -70,14 +70,7 @@ async function generateMatrixWithGemini(topic) {
                 "dimensiones": ["Dimensión 1", "Dimensión 2", "..."],
                 "indicadores": ["Indicador 1", "Indicador 2", "..."]
             },
-            "adicionales": [
-                {
-                    "nombre": "Nombre de variable adicional (si aplica)",
-                    "dimensiones": ["Dimensión 1", "..."],
-                    "indicadores": ["Indicador 1", "..."]
-                }
-            ]
-        },
+
         "disenoMetodologico": {
             "tipo": "Tipo de investigación",
             "enfoque": "Enfoque de investigación",
@@ -94,7 +87,6 @@ async function generateMatrixWithGemini(topic) {
     Los indicadores son operativamente definidos como el conjunto de respuestas obtenidas de rangos específicos de ítems dentro del instrumento de medición (cuestionario, encuesta, test, etc.). Por ejemplo, el "indicador de la dimensión empatía" se define como las respuestas obtenidas de los ítems 1 al 7 del cuestionario aplicado.
     El o los instrumentos de medición deben tener respaldo académico, es decir, que hayan sido aplicados a muestras similares y que cuenten con los criterios de confiabilidad y validéz. 
     IMPORTANTE: Incluye tantos elementos específicos (problemas específicos, objetivos específicos, hipótesis específicas, dimensiones, indicadores, etc.) como sean necesarios según el tema de investigación. No te limites a un número fijo.
-    Si el tema requiere variables adicionales (intervinientes, moderadoras, etc.), inclúyelas en el array "adicionales" (solo si es veradaderamente necesario). Si no, deja el array vacío.
     Responde SOLAMENTE con el JSON, sin texto adicional.
     `;
 
@@ -294,48 +286,6 @@ function generateStructuredMatrixHTML(matrix) {
         }
     }
     
-    // Variables adicionales (si existen)
-    if (matrix.variables.adicionales && matrix.variables.adicionales.length > 0) {
-        for (const variable of matrix.variables.adicionales) {
-            if (variable.nombre) {
-                html += `<tr>
-                        <th colspan="2">Variable Adicional: ${variable.nombre}</th>
-                    </tr>`;
-                
-                if (variable.dimensiones && variable.dimensiones.length > 0) {
-                    html += `<tr>
-                            <th>Dimensiones</th>
-                            <td>
-                                <ul>`;
-                    
-                    for (const dim of variable.dimensiones) {
-                        html += `<li>${dim}</li>`;
-                    }
-                    
-                    html += `</ul>
-                            </td>
-                        </tr>`;
-                }
-                
-                if (variable.indicadores && variable.indicadores.length > 0) {
-                    html += `<tr>
-                            <th>Indicadores</th>
-                            <td>
-                                <ul>`;
-                    
-                    for (const ind of variable.indicadores) {
-                        html += `<li>${ind}</li>`;
-                    }
-                    
-                    html += `</ul>
-                            </td>
-                        </tr>`;
-                }
-            }
-        }
-    }
-    
-    html += `</table></div>`;
     
     // Sección de Diseño Metodológico
     html += `<div class="matrix-section">
